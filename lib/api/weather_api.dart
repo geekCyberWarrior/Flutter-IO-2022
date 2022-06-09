@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-Future<void> getWeatherData() async {
+Future<List> getWeatherData() async {
   var client = http.Client();
   try {
     var response = await client.get(
@@ -13,6 +13,7 @@ Future<void> getWeatherData() async {
     );
     var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as List;
     print(decodedResponse);
+    return decodedResponse;
   } finally {
     client.close();
   }
